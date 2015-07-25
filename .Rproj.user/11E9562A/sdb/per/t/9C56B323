@@ -1,0 +1,17 @@
+{
+    "contents" : "## These two functions will calculated the inverse of a square invertible matrix\n## and then store it. If the inverse is needed again it will retrieve the inverse \n## instead of calculating it again.\n\n\n## This function creates a list of functions that allow for the storing and \n## retrieving of the input matrix and the inverse matrix.\n\n## makeCacheMatrix is the main function that takes the input matrix and creates \n## the list of functions\nmakeCacheMatrix <- function(x = matrix()) {\n    ## This creates a NULL object that will be used to store the inverse matrix\n    m <- NULL\n    \n    ## The set function allows us to change the input matrix and will reset \n    ## the inverse matrix at the same time. The <<- operator needs to be used \n    ## as the variables we want to modify were defined in the makeCacheMatrix\n    ## environment. using <- would simpliy change x and m in the local set \n    ## enironment\n    set <- function(y) {\n        x <<- y\n        m <<- NULL\n    }\n    ## The get function allows us to display the current input matrix\n    get <- function() x\n    \n    ## The setInverse function allows us to take the inverse matrix as an \n    ## input and store it.\n    setInverse <- function(Inverse) m <<- Inverse\n    \n    ## The getInverse function will display the currently stored inverse matrix\n    ## (or NULL object if nothing has been stored yet).\n    getInverse <- function() m\n    \n    ## This takes the above defined functions and stores them in a list with\n    ## appropiate names. This allows the desired function to be called by using\n    ## the \"$\" operator\n    list(set = set, get = get,\n         setInverse = setInverse,\n         getInverse = getInverse)\n\n}\n\n\n## This function will check to see if the inverse matrix has allready been \n## calculated and then either retrieve it or calculate it\n\ncacheSolve <- function(x, ...) {\n    \n    ## This will retrieve call the getInverse function from the list, which will \n    ## retrieve the inverse matrix from the makeCacheMatrix environment and store\n    ## it in the cacheSolve environment.\n    m <- x$getInverse()\n    \n    ## This checks to see if it is NULL or not\n    if(!is.null(m)) {\n        \n        ## If it isn't NULL it will simply display the inverse matrix and let\n        ## you know that it was cached. This could probably use some additional \n        ## checks as anything could be assigned to m using setInverse and it \n        ## would be displayed here\n        message(\"getting cached data\")\n        return(m)\n    }\n    \n    ## If it is NULL the input matrix is retrieved\n    data <- x$get()\n    \n    ##The inverse is calculated and assigned to m in the cacheSolve environment\n    m <- solve(data, ...)\n    \n    ## The inverse matrix is stored in m in the makeCacheMatrix Environment\n    x$setInverse(m)\n    \n    ## Displays the inverse matrix\n    m\n}\n",
+    "created" : 1437738692286.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4010974735",
+    "id" : "9C56B323",
+    "lastKnownWriteTime" : 1437790284,
+    "path" : "C:/Users/Ross Weston/GitHub Repos/ProgrammingAssignment2/cachematrix.R",
+    "project_path" : "cachematrix.R",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

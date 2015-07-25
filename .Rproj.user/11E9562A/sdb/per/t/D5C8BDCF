@@ -1,0 +1,18 @@
+{
+    "contents" : "makeVector <- function(x = numeric()) {\n    m <- NULL\n    set <- function(y) {\n        x <<- y\n        m <<- NULL\n    }\n    get <- function() x\n    setmean <- function(mean) m <<- mean\n    getmean <- function() m\n    list(set = set, get = get,\n         setmean = setmean,\n         getmean = getmean)\n}",
+    "created" : 1437780278495.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "395917866",
+    "id" : "D5C8BDCF",
+    "lastKnownWriteTime" : 1437780312,
+    "path" : "C:/Users/Ross Weston/GitHub Repos/ProgrammingAssignment2/makeVector.R",
+    "project_path" : "makeVector.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "type" : "r_source"
+}
